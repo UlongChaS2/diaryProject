@@ -1,11 +1,24 @@
 import React from 'react';
+import Form from 'components/Form';
+import styled from 'styled-components';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <div>UlongCha의 boilerplate입니다.</div>
-    </div>
+    <Container>
+      <Wrap>
+        <Form />
+      </Wrap>
+    </Container>
   );
-}
+};
 
 export default App;
+
+const Container = styled.div`
+  ${({ theme }) => theme.flexSet()}
+`;
+
+const Wrap = styled.div`
+  width: 90%;
+  max-width: 1060px;
+`;
