@@ -1,17 +1,20 @@
 <h1 align='middle'><a href=''>나만의 일기장 만들기</a></h1>
-<p align='middle'><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/UlongChaS2/diaryProject?color=orange	"> <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/UlongChaS2/diaryProject">
+<p align='middle'>
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/UlongChaS2/diaryProject?color=blue">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/UlongChaS2/diaryProject?color=orange&logo=Github"">
+</p>
 
 <br/>
 
-## 📌 프로젝트 소개
+## 프로젝트 소개 🐮🐶
 
 > 기본적인 CRUD와 API를 firebase로 만들어 통신하여 나만의 일기장 웹사이트 만들기
 
 <br/>
 
-## 📑 구현 목록
+## 구현 목록 📋
 
-### 필수구현 목록
+### 필수구현 목록 📋🏃‍♀️
 
 `전체`
 
@@ -37,7 +40,7 @@
 
 - 상세 페이지에서 수정할 수도 포스팅 페이지로 이동하여 수정할지 정해야함
 
-### 추가구현 목록
+### 추가구현 목록 📋🚶‍♀️
 
 `1단계`
 
@@ -51,7 +54,7 @@
 
 <br/>
 
-## 👨‍💻 실행 방법
+## 실행 방법 💻
 
 ### 설치
 
