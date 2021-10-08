@@ -1,10 +1,13 @@
 import React from 'react';
+import Post from 'components/Post';
 import styled from 'styled-components';
 
 const MainPage: React.FC = () => {
   return (
     <Container>
-      <Wrap>안녕하세요</Wrap>
+      <Wrap>
+        <Post />
+      </Wrap>
     </Container>
   );
 };
