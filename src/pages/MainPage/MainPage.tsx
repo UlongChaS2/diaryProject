@@ -15,10 +15,13 @@ const MainPage: React.FC = () => {
 export default MainPage;
 
 const Container = styled.div`
-  ${({ theme }) => theme.flexSet()}
+  ${({ theme }) => theme.flexSet('center', 'flex-start')};
+  height: 100vh;
+  background-color: #d1f5c850;
 `;
 
 const Wrap = styled.div`
   width: 90%;
   max-width: 1060px;
+  margin-top: 100px;
 `;
