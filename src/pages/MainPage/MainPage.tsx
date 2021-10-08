@@ -1,18 +1,15 @@
 import React from 'react';
-import MainPage from 'pages/MainPage';
 import styled from 'styled-components';
 
-const App: React.FC = () => {
+const MainPage: React.FC = () => {
   return (
     <Container>
-      <Wrap>
-        <MainPage />
-      </Wrap>
+      <Wrap>안녕하세요</Wrap>
     </Container>
   );
 };
 
-export default App;
+export default MainPage;
 
 const Container = styled.div`
   ${({ theme }) => theme.flexSet()}

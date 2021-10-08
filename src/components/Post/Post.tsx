@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const Form: React.FC = () => {
+const Post: React.FC = () => {
   return (
     <Article>
       <div>안녕하세요</div>
@@ -9,6 +9,6 @@ const Form: React.FC = () => {
   );
 };
 
-export default Form;
+export default Post;
 
 const Article = styled.article``;

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import GlobalStyles from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import mixin from 'styles/mixin';
-import App from './App';
+import Routes from './Routes';
 
 ReactDOM.render(
   <>
     <GlobalStyles />
     <ThemeProvider theme={{ ...mixin }}>
-      <App />
+      <Routes />
     </ThemeProvider>
   </>,
   document.getElementById('root')
