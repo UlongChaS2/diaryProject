@@ -1,3 +1,3 @@
-import { post, result } from './post';
+import { post, result, modalType } from './post';
 
-export type { post, result };
+export type { post, result, modalType };

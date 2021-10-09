@@ -7,6 +7,8 @@ export interface post {
 }
 
 export interface result {
-  onSuccess: (res: boolean) => void;
-  onFail: (err: boolean) => void;
+  onSuccess: (res?: boolean) => void;
+  onFail: (err?: boolean) => void;
 }
+
+export type modalType = { showModal: boolean };
