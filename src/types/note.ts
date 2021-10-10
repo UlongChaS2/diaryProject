@@ -11,4 +11,4 @@ export interface result {
   onFail: (err?: boolean) => void;
 }
 
-export type modalType = { showModal: boolean };
+export type modalType = { isModalOpen: boolean };

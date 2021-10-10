@@ -8,7 +8,7 @@ interface isModify {
   checkRemove: () => void;
 }
 
-const Post: React.FC<isModify> = ({ isModify, isChecked, checkRemove }) => {
+const Note: React.FC<isModify> = ({ isModify, isChecked, checkRemove }) => {
   return (
     <Section onClick={() => checkRemove()} isModify={isModify}>
       {isModify && isChecked ? (
@@ -36,7 +36,7 @@ const Post: React.FC<isModify> = ({ isModify, isChecked, checkRemove }) => {
   );
 };
 
-export default Post;
+export default Note;
 
 const Section = styled.section<{ isModify: boolean }>`
   ${({ theme }) => theme.flexSet()};

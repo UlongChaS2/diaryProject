@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { RootState } from 'store/reducers';
-import { showModal } from 'store/actions/modals';
 import { modalType } from 'types';
-import Modal from 'components/Modal/Modal';
-import Post from 'components/Post';
+
+import { showModal } from 'store/actions/modals';
+import { getNoteSagaAction } from 'store/actions/serverApi';
+
+import Modal from 'components/Modal';
+import RemoveConfirmaition from 'components/RemoveConfirmaition';
+import Note from 'components/Note';
 import styled from 'styled-components/macro';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
+
   const modal = useSelector<RootState, modalType>((state) => state.modals);
+  const loadingStatus = useSelector<RootState>((state) => state.serverStatus);
+
   const [isModify, setIsModify] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
-
-  // const test = () => {};
 
   const checkRemove = () => {
     setIsChecked(!isChecked);
   };
 
+  useEffect(() => {
+    dispatch(getNoteSagaAction());
+  }, [getNoteSagaAction]);
+
   return (
     <Container>
-      {modal.showModal && <Modal checkRemove={checkRemove} />}
+      {modal.isModalOpen && (
+        <Modal checkRemove={checkRemove}>
+          <RemoveConfirmaition />
+        </Modal>
+      )}
       <Wrap>
         <ModifyBtn
           onClick={() => {
@@ -41,7 +55,7 @@ const MainPage: React.FC = () => {
           </DeleteBtn>
         )}
 
-        <Post
+        <Note
           isModify={isModify}
           isChecked={isChecked}
           checkRemove={checkRemove}
@@ -51,7 +65,7 @@ const MainPage: React.FC = () => {
   );
 };
 
-export default MainPage;
+export default React.memo(MainPage);
 
 const Container = styled.div`
   ${({ theme }) => theme.flexSet('center', 'flex-start')};
