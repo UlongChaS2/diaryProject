@@ -1,5 +1,8 @@
 <h1 align='middle'><a href=''>나만의 일기장 만들기</a></h1>
-<p align='middle'><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/UlongChaS2/diaryProject?color=orange	"> <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/UlongChaS2/diaryProject">
+<p align='middle'>
+  <img src="https://img.shields.io/github/languages/top/UlongChaS2/diaryProject?color=blue&logo=typescript"> </img>
+<img src="https://img.shields.io/github/repo-size/UlongChaS2/diaryProject?color=%23&logo=Github"> </img>
+</p>
 
 <br/>
 
