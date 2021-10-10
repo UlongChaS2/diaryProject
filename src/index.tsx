@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from 'store';
-import Routes from './Routes';
 import GlobalStyles from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import mixin from 'styles/mixin';
+import App from './App';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <>
     <GlobalStyles />
     <ThemeProvider theme={{ ...mixin }}>
-      <Routes />
+      <App />
     </ThemeProvider>
-  </Provider>,
+  </>,
   document.getElementById('root')
 );
