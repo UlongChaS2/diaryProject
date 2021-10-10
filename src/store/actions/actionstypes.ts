@@ -1,0 +1,9 @@
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+
+export const FINISH_LOADING = 'FINISH_LOADING';
+export const START_LOADING = 'START_LOADING';
+
+export const GET_NOTE_REQUEST = 'GET_NOTE_REQUEST';
+export const GET_NOTE_SUCCESS = 'GET_NOTE_SUCCESS';
+export const GET_NOTE_FAILURE = 'GET_NOTE_FAILURE';

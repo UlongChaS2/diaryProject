@@ -1,25 +1,22 @@
 import { AnyAction } from 'redux';
-import { SHOW_MODAL, CLOSE_MODAL } from 'store/actions/types';
+import { SHOW_MODAL, CLOSE_MODAL } from '../actions/actionstypes';
 
 const INITIAL_STATE = {
-  showModal: false,
+  isModalOpen: false,
 };
 
-export default function modalsReducer(
-  state = INITIAL_STATE,
-  action: AnyAction
-) {
+export default function modals(state = INITIAL_STATE, action: AnyAction) {
   switch (action.type) {
     case SHOW_MODAL:
       return {
         ...state,
-        showModal: true,
+        isModalOpen: true,
         title: action.title,
       };
     case CLOSE_MODAL:
       return {
         ...state,
-        showModal: false,
+        isModalOpen: false,
       };
     default:
       return state;

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import modalsReducer from './modals';
+import modals from './modals';
+import { serverApi } from './serverApi';
 
 const rootReducer = combineReducers({
-  modals: modalsReducer,
+  modals,
+  serverApi,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
