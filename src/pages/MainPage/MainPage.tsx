@@ -4,6 +4,7 @@ import { RootState } from 'store/reducers';
 import { showModal } from 'store/actions/modals';
 import { modalType } from 'types';
 import Modal from 'components/Modal/Modal';
+import RemoveConfirmaition from 'components/RemoveConfirmaition';
 import Post from 'components/Post';
 import styled from 'styled-components/macro';
 
@@ -13,15 +14,17 @@ const MainPage: React.FC = () => {
   const [isModify, setIsModify] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  // const test = () => {};
-
   const checkRemove = () => {
     setIsChecked(!isChecked);
   };
 
   return (
     <Container>
-      {modal.showModal && <Modal checkRemove={checkRemove} />}
+      {modal.showModal && (
+        <Modal checkRemove={checkRemove}>
+          <RemoveConfirmaition />
+        </Modal>
+      )}
       <Wrap>
         <ModifyBtn
           onClick={() => {

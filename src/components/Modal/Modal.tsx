@@ -7,7 +7,7 @@ interface Initialize {
   checkRemove: () => void;
 }
 
-const Modal: React.FC<Initialize> = ({ checkRemove }) => {
+const Modal: React.FC<Initialize> = ({ checkRemove, children }) => {
   const dispatch = useDispatch();
 
   const initializeSelect = () => {
@@ -18,6 +18,7 @@ const Modal: React.FC<Initialize> = ({ checkRemove }) => {
   return (
     <Container>
       <Box>
+        {children}
         <AcceptButton></AcceptButton>
         <CancleButton onClick={() => initializeSelect()}></CancleButton>
       </Box>
