@@ -21,8 +21,12 @@ const MainPage: React.FC = () => {
   const [isModify, setIsModify] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const checkRemove = () => {
+  const toggleCheck = () => {
     setIsChecked(!isChecked);
+  };
+
+  const initializeCheck = (status: boolean) => {
+    setIsChecked(status);
   };
 
   useEffect(() => {
@@ -32,7 +36,7 @@ const MainPage: React.FC = () => {
   return (
     <Container>
       {modal.isModalOpen && (
-        <Modal checkRemove={checkRemove}>
+        <Modal initializeCheck={initializeCheck}>
           <RemoveConfirmaition />
         </Modal>
       )}
@@ -58,7 +62,7 @@ const MainPage: React.FC = () => {
         <Note
           isModify={isModify}
           isChecked={isChecked}
-          checkRemove={checkRemove}
+          checkRemove={toggleCheck}
         />
       </Wrap>
     </Container>

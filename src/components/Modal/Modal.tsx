@@ -4,15 +4,15 @@ import { closeModal } from 'store/actions/modals';
 import styled from 'styled-components';
 
 interface Initialize {
-  checkRemove: () => void;
+  initializeCheck: (status: boolean) => void;
 }
 
-const Modal: React.FC<Initialize> = ({ checkRemove, children }) => {
+const Modal: React.FC<Initialize> = ({ initializeCheck, children }) => {
   const dispatch = useDispatch();
 
   const initializeSelect = () => {
     dispatch(closeModal());
-    checkRemove();
+    initializeCheck(false);
   };
 
   return (
