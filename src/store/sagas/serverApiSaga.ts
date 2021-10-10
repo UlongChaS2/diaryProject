@@ -1,7 +1,7 @@
-import { put, call, take, takeLatest, StrictEffect } from 'redux-saga/effects';
+import { put, call, takeLatest, StrictEffect } from 'redux-saga/effects';
 import { AxiosResponse } from 'axios';
-import { startLoading } from 'store/actions/serverApi';
 import { getNotesAPI } from 'utils/serverApi';
+import { startLoading, finishLoding } from 'store/actions/serverStatus';
 import {
   GET_NOTE_REQUEST,
   GET_NOTE_SUCCESS,
@@ -10,6 +10,8 @@ import {
 
 function* getNotesSaga() {
   yield put(startLoading(GET_NOTE_REQUEST));
+
+  console.log(typeof GET_NOTE_REQUEST);
   try {
     const res: AxiosResponse = yield call(getNotesAPI);
     console.log('res', res);
@@ -18,6 +20,7 @@ function* getNotesSaga() {
         type: GET_NOTE_SUCCESS,
         payload: res.data,
       });
+      yield put(finishLoding(GET_NOTE_REQUEST));
     } else {
       throw new Error();
     }
