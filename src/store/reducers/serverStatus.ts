@@ -6,7 +6,6 @@ const INITIAL_STATE = {};
 export default function serverStatus(state = INITIAL_STATE, action: AnyAction) {
   switch (action.type) {
     case START_LOADING:
-      console.log(action);
       return {
         ...state,
         [action.payload]: true,

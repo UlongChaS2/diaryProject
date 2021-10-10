@@ -16,9 +16,8 @@ const MainPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const modal = useSelector<RootState, modalType>((state) => state.modals);
-  const serverState2 = useSelector<RootState>((state) => state.serverStatus);
+  const loadingStatus = useSelector<RootState>((state) => state.serverStatus);
 
-  console.log(serverState2);
   const [isModify, setIsModify] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 

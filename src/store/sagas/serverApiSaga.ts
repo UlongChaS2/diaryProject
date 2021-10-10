@@ -11,7 +11,6 @@ import {
 function* getNotesSaga() {
   yield put(startLoading(GET_NOTE_REQUEST));
 
-  console.log(typeof GET_NOTE_REQUEST);
   try {
     const res: AxiosResponse = yield call(getNotesAPI);
     console.log('res', res);
