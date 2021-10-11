@@ -4,20 +4,24 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 registerLocale('ko', ko);
 
-const DatePickerWrapper = () => {
-  const [startDate, setStartDate] = useState(new Date());
+interface DatePickerWrapperProps {
+  handleDate: (selectedDate: Date) => void;
+}
 
-  console.log(startDate);
+const DatePickerWrapper: React.FC<DatePickerWrapperProps> = ({
+  handleDate,
+}) => {
   return (
     <DatePicker
       locale={ko}
       dateFormat='yyyy-MM-dd'
+      name='date'
       minDate={new Date()}
-      selected={startDate}
-      onChange={(date: Date) => setStartDate(date)}
+      // selected={startDate}
+      onChange={(date: Date) => handleDate(date)}
       placeholderText='날짜 선택'
     />
   );
 };
 
-export default DatePickerWrapper;
+export default React.memo(DatePickerWrapper);

@@ -1,25 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+
 import DatePickerWrapper from 'components/DatePickerWrapper';
+import { TWeather, TMood, typeNote } from 'types/note';
+import { formatPosting } from 'utils/contants';
 import styled from 'styled-components/macro';
 
 const PostingPage: React.FC = () => {
   const history = useHistory();
+  const [form, setForm] = useState<typeNote>(formatPosting);
+
+  const handleForm = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ): void => {
+    const { name, value } = e.target;
+
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleDate = (selectedDate: Date) => {
+    setForm({ ...form, date: selectedDate });
+  };
+
+  const canclePosting = () => {
+    setForm(formatPosting);
+    history.push('/');
+  };
+
+  const { title, context } = form;
   return (
     <Container>
       <Wrap>
         <Form>
-          <TitleInput />
+          <TitleInput onChange={handleForm} name='title' value={title} />
           <DetailBox>
-            <DatePickerWrapper />
-            <MoodSelect />
-            <WeatherSelect />
+            <DatePickerWrapper handleDate={handleDate} />
+            <MoodSelect onChange={handleForm} name='mood'>
+              <option value=''>기분 선택</option>
+              {Object.entries(TMood).map(([key, value]) => {
+                return (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                );
+              })}
+            </MoodSelect>
+            <WeatherSelect onChange={handleForm} name='weather'>
+              <option value=''>날씨 선택</option>
+              {Object.entries(TWeather).map(([key, value]) => {
+                return (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                );
+              })}
+            </WeatherSelect>
           </DetailBox>
-          <ContextArea />
+          <ContextArea onChange={handleForm} name='context' value={context} />
         </Form>
         <BtnBox>
           <SubmitBtn>확인</SubmitBtn>
-          <CancleBtn onClick={() => history.push('/')}>취소</CancleBtn>
+          <CancleBtn onClick={() => canclePosting()}>취소</CancleBtn>
         </BtnBox>
       </Wrap>
     </Container>
