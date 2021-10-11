@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadingStatus } from 'types';
@@ -14,6 +15,7 @@ import styled from 'styled-components/macro';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { isModalOpen } = useSelector((state: RootState) => state.modals);
   const { data } = useSelector((state: RootState) => state.serverApi);
@@ -59,7 +61,9 @@ const MainPage: React.FC = () => {
               삭제
             </DeleteBtn>
           )}
-          <NewNoteBtn>새로 추가</NewNoteBtn>
+          <NewNoteBtn onClick={() => history.push('/note')}>
+            새로 추가
+          </NewNoteBtn>
         </BtnBox>
         {loading !== undefined && loading ? (
           <div style={{ fontSize: '100px' }}>로딩중...</div>
