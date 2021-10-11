@@ -1,14 +1,14 @@
-export interface post {
+export interface typeNote {
   id: number;
   title: string;
   context: string;
   date: string;
+  mood: string;
   weather: number;
 }
 
-export interface result {
-  onSuccess: (res?: boolean) => void;
-  onFail: (err?: boolean) => void;
-}
+export type typeNotes = typeNote[];
 
-export type modalType = { isModalOpen: boolean };
+export interface loadingStatus {
+  loading?: boolean;
+}

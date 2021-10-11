@@ -1,42 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/reducers';
+import { typeNotes } from 'types';
 import CheckIcon from 'assets/icons/CheckIcon';
 import styled from 'styled-components/macro';
 
-interface isModify {
+interface TNoteForm {
+  noteData: typeNotes;
   isModify: boolean;
   isChecked: boolean;
   checkRemove: () => void;
 }
 
-const Note: React.FC<isModify> = ({ isModify, isChecked, checkRemove }) => {
+const NoteForm: React.FC<TNoteForm> = ({
+  noteData,
+  isModify,
+  isChecked,
+  checkRemove,
+}) => {
+  const [notes, setNotes] = useState<typeNotes>();
+
+  useEffect(() => {
+    setNotes(noteData);
+  }, []);
+
   return (
-    <Section onClick={() => checkRemove()} isModify={isModify}>
-      {isModify && isChecked ? (
-        <ModifySection>
-          <CheckBox />
-        </ModifySection>
-      ) : null}
-      <DateBox>
-        <YearMonth>2021.10</YearMonth>
-        <Day>08</Day>
-      </DateBox>
-      <ContextBox>
-        <InfoBox>
-          <Title>제목입니다.</Title>
-          <div>
-            <Mood>기분입니다.</Mood>
-            <Weather>날씨입니다.</Weather>
-          </div>
-        </InfoBox>
-        <Context>
-          본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.본문입니다.
-        </Context>
-      </ContextBox>
-    </Section>
+    <Wrap>
+      {notes &&
+        notes.map(({ id, context, title, weather, date, mood }) => {
+          return (
+            <Section key={id} onClick={() => checkRemove()} isModify={isModify}>
+              {isModify && isChecked ? (
+                <ModifySection>
+                  <CheckBox />
+                </ModifySection>
+              ) : null}
+              <DateBox>
+                <YearMonth>{date}</YearMonth>
+                <Day>08</Day>
+              </DateBox>
+              <ContextBox>
+                <InfoBox>
+                  <Title>{title}</Title>
+                  <div>
+                    <Mood>{mood}</Mood>
+                    <Weather>{weather}</Weather>
+                  </div>
+                </InfoBox>
+                <Context>{context}</Context>
+              </ContextBox>
+            </Section>
+          );
+        })}
+    </Wrap>
   );
 };
 
-export default Note;
+export default NoteForm;
+
+const Wrap = styled.div`
+  ${({ theme }) => theme.flexSet('space-between')};
+`;
 
 const Section = styled.section<{ isModify: boolean }>`
   ${({ theme }) => theme.flexSet()};
@@ -48,6 +72,10 @@ const Section = styled.section<{ isModify: boolean }>`
 
   &:hover {
     background-color: ${({ isModify }) => isModify && '#6ca973'};
+  }
+
+  &:nth-child(2n) {
+    margin: 0px;
   }
 `;
 

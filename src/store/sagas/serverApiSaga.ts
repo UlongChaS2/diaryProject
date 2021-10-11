@@ -13,7 +13,7 @@ function* getNotesSaga() {
 
   try {
     const res: AxiosResponse = yield call(getNotesAPI);
-    console.log('res', res);
+    // console.log('res', res);
     if (res.status === 200) {
       yield put({
         type: GET_NOTE_SUCCESS,

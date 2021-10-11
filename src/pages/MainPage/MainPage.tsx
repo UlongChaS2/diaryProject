@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from 'store/reducers';
-import { modalType } from 'types';
+import { loadingStatus } from 'types';
 
+import { RootState } from 'store/reducers';
 import { showModal } from 'store/actions/modals';
 import { getNoteSagaAction } from 'store/actions/serverApi';
 
 import Modal from 'components/Modal';
 import RemoveConfirmaition from 'components/RemoveConfirmaition';
-import Note from 'components/Note';
+import NoteForm from 'components/NoteForm';
 import styled from 'styled-components/macro';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
 
-  const modal = useSelector<RootState, modalType>((state) => state.modals);
-  const loadingStatus = useSelector<RootState>((state) => state.serverStatus);
+  const { isModalOpen } = useSelector((state: RootState) => state.modals);
+  const { data } = useSelector((state: RootState) => state.serverApi);
+  const { loading } = useSelector(
+    (state: RootState): loadingStatus => state.serverStatus
+  );
 
   const [isModify, setIsModify] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -31,39 +34,43 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getNoteSagaAction());
-  }, [getNoteSagaAction]);
+  }, [getNoteSagaAction, dispatch]);
 
   return (
     <Container>
-      {modal.isModalOpen && (
+      {isModalOpen && (
         <Modal initializeCheck={initializeCheck}>
           <RemoveConfirmaition />
         </Modal>
       )}
       <Wrap>
-        <ModifyBtn
-          onClick={() => {
-            setIsModify(!isModify);
-            setIsChecked(false);
-          }}
-          isModify={isModify}
-        >
-          {isModify ? '선택 중단' : '선택'}
-        </ModifyBtn>
-        {isModify && (
-          <DeleteBtn
-            onClick={() => dispatch(showModal('delete'))}
+        <BtnBox>
+          <ModifyBtn
+            onClick={() => {
+              setIsModify(!isModify);
+              setIsChecked(false);
+            }}
             isModify={isModify}
           >
-            삭제
-          </DeleteBtn>
+            {isModify ? '선택 중단' : '선택'}
+          </ModifyBtn>
+          {isModify && (
+            <DeleteBtn onClick={() => dispatch(showModal('delete'))}>
+              삭제
+            </DeleteBtn>
+          )}
+          <NewNoteBtn>새로 추가</NewNoteBtn>
+        </BtnBox>
+        {loading !== undefined && loading ? (
+          <div style={{ fontSize: '100px' }}>로딩중...</div>
+        ) : (
+          <NoteForm
+            isModify={isModify}
+            isChecked={isChecked}
+            checkRemove={toggleCheck}
+            noteData={data}
+          />
         )}
-
-        <Note
-          isModify={isModify}
-          isChecked={isChecked}
-          checkRemove={toggleCheck}
-        />
       </Wrap>
     </Container>
   );
@@ -83,15 +90,28 @@ const Wrap = styled.div`
   margin-top: 100px;
 `;
 
-const ModifyBtn = styled.button<{ isModify: boolean }>`
+const BtnBox = styled.div`
+  ${({ theme }) => theme.flexSet('flex-end')};
+  margin-bottom: 20px;
+`;
+
+const DeleteBtn = styled.button`
+  min-width: 80px;
+  height: 30px;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: green;
+`;
+
+const ModifyBtn = styled(DeleteBtn)<{ isModify: boolean }>`
   min-width: 80px;
   height: 30px;
   padding: 10px;
   border-radius: 5px;
   background-color: ${({ isModify }) => (isModify ? 'blue' : 'red')};
-  float: right;
 `;
 
-const DeleteBtn = styled(ModifyBtn)`
-  background-color: green;
+const NewNoteBtn = styled(DeleteBtn)`
+  background-color: blueviolet;
 `;

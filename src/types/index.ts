@@ -1,3 +1,3 @@
-import { post, result, modalType } from './note';
+import { typeNote, typeNotes, loadingStatus } from './note';
 
-export type { post, result, modalType };
+export type { typeNote, typeNotes, loadingStatus };
